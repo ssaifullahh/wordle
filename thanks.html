@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .thank-you-text {
+            font-size: 72px;
+            font-weight: bold;
+            color: #145214;
+            text-align: center;
+            animation: glowingBackground 2s ease-in-out infinite;
+        }
+
+        @keyframes glowingBackground {
+            0% {
+                box-shadow: 0 0 100px 80px rgba(30, 123,30, 0.7 ); 
+            }
+            50% {
+                box-shadow: 0 0 140px 160px rgba(20, 82, 20, 0.5); 
+            }
+            100% {
+                box-shadow: 0 0 100px 80px rgba(40, 164,40, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-text">
+        Bye
+    </div>
+</body>
+</html>

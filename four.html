@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wordle Game</title>
+<link rel="stylesheet" href="cs.css">
+</head>
+<body>
+    <div class="content1">
+    <h1>Wordle Game</h1>
+    <p>Try to guess the 4-letter word in 5 attempts.</p>
+    <input type="text" id="guessInput" maxlength="4"><br><br>
+    <button onclick="checkGuess()">Submit</button>
+    </div>
+    <div class="content2">
+    <span id="a" class="wrong">-</span>
+    <span id="b" class="wrong">-</span>
+    <span id="c" class="wrong">-</span>
+    <span id="d" class="wrong">-</span>
+    <br><br>
+     <form action="menu.html"><input type="submit" class="submit2" value="Jump to Menu"></form>
+    </div>
+    <div class="content3">
+    <span id="aa" class="wrong">-</span>
+    <span id="bb" class="wrong">-</span>
+    <span id="cc" class="wrong">-</span>
+    <span id="dd" class="wrong">-</span>
+    <br>
+     <p id="result"></p>
+    </div>
+    <script>
+        const wordList = [ "Able", "Acid", "Acre", "Acts", "Adds", "Aged", "Aims", "Airs", "Ajar", "Alec", "Aloe", "Amos", "Amys", "Army", "Asia", "Atom", "Aunt", "Auto", "Avid", "Axel", 
+  "Baba", "Back", "Bald","Band", "Bank", "Bars", "Base", "Bath", "Beak", "Beam", "Bear", "Beat", "Belt", "Bend", "Best", "Beta", "Bias", "Bird", "Bite", "Bits", "Blur", "Boat", "Body", "Bold", "Bolt", "Bond", "Bone", "Book", "Boom", "Born", "Boss", "Both", "Bowl", "Boys", "Brad", "Bran", "Brew", "Brick", "Broke", "Brow", "Bull", "Bump", "Burn", "Bush", "Busy", "Byte", "Cake", "Call", "Camp", "Cape", "Card", "Care", "Carp", "Cart", "Case", "Cash", "Cast", "Cave", "Chad", "Chef", "Chin", "Chip", "City", "Clan", "Clap", "Clip", "Coal", "Coast", "Coin", "Cold", "Cone", "Cook", "Cool", "Copy", "Cord", "Core", "Cork", "Corn", "Cost", "Cove", "Crap", 
+"Crew", "Crop", "Cross",
+"Crow", "Cube", "Curb", "Curl", "Cute", "Czar", "Dale", "Damn", "Dare", "Dark", "Dash", "Date", "Dawn", "Days", "Dean", "Dear", "Debt", "Deck", "Deep", "Deer", "Desk", "Dial", "Dick", "Diet", "Dirt", "Disk", "Dive", "Dock", "Does", "Dogs", "Doll", "Dome", "Done", "Doom", "Door", "Dose", "Dots", "Dove", "Down", "Drag", "Draw", "Drew", "Drop", "Drug", "Drum", "Dual", "Duck", "Dude", "Duke", "Dull", "Dump", "Dust", "Duty", "Earl", "Easy", "Echo", "Edge",  "Eggs", "Elder", "Ends", "Epic", "Erin", "Evil", "Exit", "Face", "Fact", "Fade", "Fair", "Fall", "Fame", "Fang", "Farm", "Fast", "Fate", "Fear", "Feat", "Feed", "Feel", "Feet", "Fern", "Fest", "Fiat", "Fiber", "Figs", "File", "Fill", "Film", "Find", "Fine", "Fire", "Fish", "Fist", "Fits", "Five", "Flag", "Flat", "Flee", 
+  "Flip", "Flow", "Flux", "Foam", "Fold", "Food", "Fool", "Ford", "Fore", "Form", "Fort", "Foul", "Four", "Fowl", "Fray", "Free", "Frog", "Fuel", "Full", "Fund", 
+  "Fury", "Fuse", "Fuss", "Gage", "Gain", "Game", "Gang", "Gate", "Gear", "Gels", "Gems", "Gene", "Gild", "Give", "Glue", "Goal", "Gold", "Golf", "Gone", "Good", "Gore", "Gosh", "Grab", "Gray", "Grip", "Grit", "Grow", "Grub", "Gulp", "Guru", "Hail", "Hair", "Half", "Hall", "Halo", "Hand", "Hang", "Hard", "Harm", "Haze", "Head", "Heal", "Heap", "Hear", "Heat", "Heck", "Heir", "Help", "Here", "Hero", "Hike", "Hill", "Hint", "Hire", "Hold", "Hole", "Home", "Hood", "Hook", "Hope", "Horn", "Host", "Hour", "Huge", "Hunt", "Hurt", "Hush", "Hymn", "Idea", "Idle", "Idol", "Inch", "Info", "Inns", "Iron", "Isle", "Itch", "Jail", "Jake", "Jane", "Jazz", "Jeep", "Jolt", "Jump", "Junk", "Jury", "Just", "Keen", "Keep", "Kelp", "Kent", "Kept", "Kick", "Kids", "Kill", "Kind", "King", "Kiss", "Kits", "Kite", "Knee", "Knew", "Knife", "Knot", "Know", "Kook", "Kudo", "Lace", "Lack", "Lads", "Lady", "Lake", "Lamb", "Lamp", "Land", "Lane", "Lard", "Lark", "Last", "Late", 
+  "Laugh", "Leaf", "Leak", "Lean", "Leap", "Leave", "Leek", "Leer", "Left", "Lend", "Lens", "Less", "Lift", "Like", "Lime", "Line", "Lion", "Lisp", "List", "Live", "Load", "Loan", "Lock", "Long", "Look", "Loop", "Lost", "Mail", "Main", "Make", "Male", "Many", "Mark", "Mass", "Mate", "Math", "Meat", "Meet", "Menu", "Mess", "Mind", "Mine", "Mint", "Miss", "Mist", "Most", "Move", "Much", "Must", "Name", "Navy", "Near", "Neat", "Neck", "Need", "News", "Next", "Nice", "Nine", "Noon", "Norm", "Nose", "Note", "Oath", "Oily", "Open", "Pack", "Page", "Pain", "Pair", "Palm", "Part", "Pass", "Past", "Path", "Peak", "Peel", "Peer", "Perk", "Pest", "Pets", "Pile", "Pink", "Plan", "Play", "Plug", "Plus", "Pops", "Port", "Post", "Pour", "Pray", "Prep", "Puff", "Push", "Quit", "Quiz", "Race", "Rack", "Rain", 
+ "Rank", "Rare", "Rate","Read", "Real", "Rear", "Reef", "Reel", "Rent", "Rest", "Rice", "Rich", "Ride", "Ring", "Risk", "Road", "Rock", "Role", "Roof", "Room", "Root", "Rope", "Rose", "Rule", "Rush", "Rust", "Safe", "Sage", "Sail", "Sale", "Salt", "Same", "Sand", "Save", "Seat", "Seed", "Seek", "Self", "Send", "Sent", "Sets", "Sewn", "Sexy", "Shed", "Shine", "Ship", "Shoe", "Shop", "Show", "Side", "Sign", "Silk", "Silt", "Site", "Size", "Skim", "Skin", "Skip", "Slip", "Slow", "Small", "Smog", "Snag", "Snap", "Snow", "Soap", "Sock", "Soda", "Soil", "Sole", "Some", "Song", "Soon", "Sort", "Soul", "Soup", "Spin", "Spit", "Spot", "Star",  "Stay", "Step", "Stir", "Stop", "Such", "Suck", "Suit", "Sure", "Surf", "Swam", "Swim", "Sync", "Tame", "Tape", "Task", "Taxi", "Teal", "Team", "Tech", "Test", "Text", "Thank", "That", "Them", "Then", "Thin", "This", "Thug", "Tilt", "Time", "Tiny", "Tips", "Tire", "Toil", "Tone", "Tool", "Tour", "Town", "Trap", "Tray", "Tree", "Trek", "Trim", "Trip", "True", "Tuna", "Tune", "Undo", "Unit", "Upon", "Upro", "Urge", "Used", "User", "Uses", "Vain", "Vast", "Veil", "Verb", "Very", "Vest", "View", "Visa", "Void", "Vote", "Wail", "Wait", "Wake", "Walk", "Wall", "Want", "Ward", "Warm", "Warp", "Wash", "Wave", "Weak", "Wear", "Week", "Weep", "West", "Whim", "Whip", "Whiz", "Wick", "Wide", "Wife", "Will", "Wind", "Wine", "Wing", "Wink", "Wise", "Wish", "Wolf", "Wont", "Wood", "Wool", "Word", "Work", "Worn", "Wrap", "Writ", "Xray", "Yarn", "Yawn", "Yell", "Yolk", "Yore", "Yarn", "Yawn", "Yell", "Yolk", "Yore", "Your", "Zero", "Zeus", "Zone"];
+        const maxAttempts = 5;
+        let secretWord = chooseRandomWord(wordList).toLowerCase();
+        let attemptsLeft = maxAttempts;
+
+        function chooseRandomWord(wordList) {
+            return wordList[Math.floor(Math.random() * wordList.length)];
+        }
+
+        function checkGuess(){
+            if (attemptsLeft!==0){
+            const guessInput = document.getElementById("guessInput");
+            const guess = guessInput.value.toLowerCase().trim();
+
+            if (guess.length !== 4) {
+                setResult("Invalid input. Please enter a 4-letter word.");
+                return;
+            }
+
+            let correctPositions = 0;
+          
+
+                if (guess[0] === secretWord[0]) {
+                    correctPositions++;
+                    const re = document.getElementById("a");
+                    re.textContent = guess[0];
+                    re.setAttribute('class','correct');                   
+                    const ree = document.getElementById("aa");
+                    ree.textContent = guess[0];
+                    ree.setAttribute('class','correct');
+                } else if (secretWord.includes(guess[0])) {
+                    const ree = document.getElementById("aa");
+                    ree.textContent = guess[0];
+                    ree.setAttribute('class','other');                 
+                }else{
+                    const ree = document.getElementById("aa");
+                    ree.textContent = guess[0];
+                    ree.setAttribute('class','wrong');
+                }
+            
+            
+                 if (guess[1] === secretWord[1]) {
+                    correctPositions++;
+                    const re = document.getElementById("b");
+                    re.textContent = guess[1];
+                    re.setAttribute('class','correct');                    
+                    const ree = document.getElementById("bb");
+                    ree.textContent = guess[1];
+                    ree.setAttribute('class','correct');
+                } else if (secretWord.includes(guess[1])) {
+                    const ree = document.getElementById("bb");
+                    ree.textContent = guess[1];
+                    ree.setAttribute('class','other');                   
+                }else{
+                    const ree = document.getElementById("bb");
+                    ree.textContent = guess[1];
+                    ree.setAttribute('class','wrong');
+                    
+                }
+                
+                 if (guess[2] === secretWord[2]) {
+                    correctPositions++;
+                    const re = document.getElementById("c");
+                    re.textContent = guess[2];
+                    re.setAttribute('class','correct');
+                    
+                    const ree = document.getElementById("cc");
+                    ree.textContent = guess[2];
+                    ree.setAttribute('class','correct');
+                } else if (secretWord.includes(guess[2])) {                    
+                    const ree = document.getElementById("cc");
+                    ree.textContent = guess[2];
+                    ree.setAttribute('class','other');                    
+                }else{
+                    const ree = document.getElementById("cc");
+                    ree.textContent = guess[2];
+                    ree.setAttribute('class','wrong');                  
+                }
+               
+                 if (guess[3] === secretWord[3]) {
+                    correctPositions++;
+                    const re = document.getElementById("d");
+                    re.textContent = guess[3];
+                    re.setAttribute('class','correct');                    
+                    const ree = document.getElementById("dd");
+                    ree.textContent = guess[3];
+                    ree.setAttribute('class','correct');
+                }else if (secretWord.includes(guess[3])) {                   
+                    const ree = document.getElementById("dd");
+                    ree.textContent = guess[3];
+                    ree.setAttribute('class','other');                    
+                }else{
+                    const ree = document.getElementById("dd");
+                    ree.textContent = guess[3];
+                    ree.setAttribute('class','wrong');     
+                }
+                
+                 
+
+            if (correctPositions === 4) {
+                setResult(`Congratulations! You've guessed the word.`);
+            } else {
+                setResult(`Correct positions: ${correctPositions}, Keep Guessing`);
+            }
+
+            attemptsLeft--;
+            if (attemptsLeft === 0) {
+                setResult(`Sorry, you're out of attempts. The word was: ${secretWord}`);
+            }
+
+            guessInput.value = "";
+        }
+        }
+        function setResult(message) {
+            const resultElement = document.getElementById("result");
+            resultElement.textContent = message;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+
+<html>
+    <head>
+        <title>Welcome to Wordle</title>
+        <style>
+            body {
+    background: linear-gradient(-45deg, #6aaa64, #c9b458, #787c7e, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+            h1 {
+                font-family:monospace;
+                font-size:50px;
+                }
+            .content {
+                background-color:rgba(255,255,255,.8);
+                border-radius:.75em;
+                box-shadow:0 0 .75em rgba(0,0,0,.25);
+                box-sizing:border-box;
+                left:50%;
+                padding:10vmin;
+                position:fixed;
+                text-align:center;
+                top:50%;
+                transform:translate(-50%, -50%);
+                }
+            .submit{
+                background-color:#262640;
+                border-radius:.25em;
+                box-shadow:0 0 .75em rgba(0,0,0,.25);                               
+                text-align:center;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                display: inline-block;
+                font-size: 16px;                
+                cursor: pointer;                
+                }                
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="content">
+            <img src="ppp.webp">
+            <h1>Wordle</h1>
+            <form action="menu.html"><input type="submit" class="submit" value="Continue"></form>
+  
+</div>
+</body>
+</html>

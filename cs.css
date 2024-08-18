@@ -1,0 +1,85 @@
+            body{
+                background-image:url("bg.jpg");
+            }
+            
+            h1{
+                font-size:50px  
+            }
+            .content1 {
+                background-color:rgba(255,255,255,.8);
+                border-radius:.75em;
+                box-shadow:0 0 .75em rgba(12,12,12  ,.25);
+                box-sizing:border-box;
+                left:75%;
+                padding:10vmin;
+                position:fixed;
+                text-align:center;
+                top:50%;
+                transform:translate(-50%, -50%);
+            }
+            .content2 {
+                background-color:rgba(255,255,255,.8);
+                border-radius:.75em;
+                box-shadow:0 0 .75em rgba(12,12,12  ,.25);
+                box-sizing:border-box;
+                left:25%;
+                padding:10vmin;
+                position:fixed;
+                text-align:center;
+                top:75%;
+                transform:translate(-50%, -50%);
+            }
+            .content3 {
+                background-color:rgba(255,255,255,.8);
+                border-radius:.75em;
+                box-shadow:0 0 .75em rgba(12,12,12  ,.25);
+                box-sizing:border-box;
+                left:25%;
+                padding:10vmin;
+                position:fixed;
+                text-align:center;
+                top:25%;
+                transform:translate(-50%, -50%);
+            }
+            span.correct {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                padding: 5px;
+                text-transform: uppercase;
+                background-color:#6aaa64;
+                color: white;
+                text-align:center;
+                }
+            span.other {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                padding: 5px;    
+                background-color:#c9b458; 
+                color:white;
+                text-transform: uppercase;
+                text-align:center;
+                }
+            span.wrong {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                padding: 5px;    
+                text-transform: uppercase;
+                background-color:#787c7e; 
+                color:white;
+                text-align:center;
+                }
+                .submit2{
+                background-color:#263640;
+                border-radius:.25em;
+                box-shadow:0 0 .75em rgba(0,0,0,.25);                               
+                text-align:center;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                display: inline-block;
+                font-size: 16px;                
+                cursor: pointer;                
+                }      
